@@ -1,0 +1,9 @@
+name: spot
+root: ./
+
+startup_window: status
+windows:
+  - rviz:
+      layout: even-vertical
+      panes:
+        - history -s 'roslaunch towr_ros towr_ros_spot.launch'
