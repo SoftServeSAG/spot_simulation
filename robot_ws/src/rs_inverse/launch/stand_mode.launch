@@ -1,0 +1,5 @@
+<launch>
+    <arg name="robot_name" default="spot1" />
+        <param name="spot_name" type="str" value="$(arg robot_name)" />
+        <node name="stand_mode_spot" pkg="rs_inverse" type="stand_mode_spot.py" output="screen" ns="/$(arg robot_name)"/>
+</launch>

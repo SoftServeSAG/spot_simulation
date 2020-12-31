@@ -1,0 +1,45 @@
+<?xml version='1.0'?>
+<sdf version='1.5'>
+  <model name="hall_wall_solar_system">
+    <pose>0 0 0 0 0 0</pose>
+    <static>true</static>
+    <link name='model_body'>
+      <collision name='collision'>
+        <geometry>
+          <box>
+            <size>2.9 0.005 2.5</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <visual name='visual'>
+        <geometry>
+          <box>
+            <size>2.9 0.005 2.5</size>
+          </box>
+        </geometry>
+
+        <material>
+          <script>
+            <uri>model://rs_gazebo/models/ss_hq4/hall_wall_solar_system/materials/scripts</uri>
+            <uri>model://rs_gazebo/models/ss_hq4/hall_wall_solar_system/materials/textures</uri>
+            <name>hall_wall_solar_system</name>
+          </script>
+        </material>
+      </visual>
+
+      <inertial>
+        <pose> 0 0 0 0 0 0</pose>
+        <inertia>
+          <ixx>0.5208</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.22</iyy>
+          <iyz>0</iyz>
+          <izz>0.7</izz>
+        </inertia>
+        <mass>1.0</mass>
+      </inertial>
+    </link>
+  </model>
+</sdf>

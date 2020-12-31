@@ -1,0 +1,20 @@
+<launch>
+  <arg name="spot_name" default="spot1" />
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find rs_control)/config/spot_control.yaml" command="load"/>
+  <!-- Load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/$(arg spot_name)" args="joint_front_left_hip_x_controller
+                                                 joint_front_left_hip_y_controller
+                                                 joint_front_left_knee_controller
+                                                 joint_front_right_hip_x_controller
+                                                 joint_front_right_hip_y_controller
+                                                 joint_front_right_knee_controller
+                                                 joint_rear_left_hip_x_controller
+                                                 joint_rear_left_hip_y_controller
+                                                 joint_rear_left_knee_controller
+                                                 joint_rear_right_hip_x_controller
+                                                 joint_rear_right_hip_y_controller
+                                                 joint_rear_right_knee_controller
+                                                 joint_states_controller"/>
+</launch>

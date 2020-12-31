@@ -1,0 +1,13 @@
+material hall_wall_solar_system
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture wall_solar_system.jpg
+      }
+    }
+  }
+}

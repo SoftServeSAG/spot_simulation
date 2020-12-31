@@ -1,0 +1,5 @@
+<launch>
+    <arg name="robot_name" default="spot1" />
+        <param name="spot_name" type="str" value="$(arg robot_name)" />
+        <node name="teleop_spot" pkg="rs_teleop" type="teleop_rs_keyboard.py" output="screen" ns="/$(arg robot_name)"/>
+</launch>

@@ -5,6 +5,7 @@ bin/
 lib/
 msg_gen/
 srv_gen/
+deps/
 msg/*Action.msg
 msg/*ActionFeedback.msg
 msg/*ActionGoal.msg
@@ -37,6 +38,12 @@ srv/_*.py
 *.pyc
 qtcreator-*
 *.user
+
+# Idea`s files
+*.idea/*
+
+.tmuxinator.yml
+.tmuxinator.yaml
 
 /planning/cfg
 /planning/docs

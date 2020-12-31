@@ -1,0 +1,1 @@
+- git: {local-name: src/deps/aws_robomaker_hospital_world, uri: "https://github.com/aws-robotics/aws-robomaker-hospital-world.git", version: "master"}

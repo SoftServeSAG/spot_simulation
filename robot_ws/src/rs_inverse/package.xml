@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>rs_inverse</name>
+  <version>1.0.0</version>
+  <description>
+    The spot_control package
+  </description>
+  <license>MIT</license>
+  
+  <author email="tboro@softserveinc.com">Taras Borovets</author>
+  <maintainer email="tboro@softserveinc.com">Taras Borovets</maintainer>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <depend>rospy</depend>
+  <depend>python-tk</depend>
+  <depend>std_msgs</depend>
+  <depend>rs_msgs</depend>
+  
+  <exec_depend>message_runtime</exec_depend>
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>joint_state_controller</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>gazebo_msgs</exec_depend>
+</package>

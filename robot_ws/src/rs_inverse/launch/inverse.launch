@@ -1,0 +1,5 @@
+<launch>
+    <arg name="robot_name" default="spot1" />
+        <param name="spot_name" type="str" value="$(arg robot_name)" />
+        <node name="inverse_spot" pkg="rs_inverse" type="env_tester.py" output="screen" ns="/$(arg robot_name)"/>
+</launch>
