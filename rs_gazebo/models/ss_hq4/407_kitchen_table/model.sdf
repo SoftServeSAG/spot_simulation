@@ -1,0 +1,39 @@
+<?xml version='1.0'?>
+<sdf version='1.5'>
+    <model name="407_kitchen_table">
+        <pose>0 0 0 0 0 0</pose>
+        <static>true</static>
+        <link name='model_body'>
+            <visual name="visual">
+                <geometry>
+                    <mesh>
+                        <uri>model://rs_gazebo/meshes/ss_hq4/407_kitchen_table/407_kitchen_table_visual.dae</uri>
+                        <scale>1 1 1</scale>
+                    </mesh>
+                </geometry>
+            </visual>
+
+            <collision name="collision">
+                <geometry>
+                    <mesh>
+                        <uri>model://rs_gazebo/meshes/ss_hq4/407_kitchen_table/407_kitchen_table_collision.stl</uri>
+                        <scale>1 1 1</scale>
+                    </mesh>
+                </geometry>
+            </collision>
+
+            <inertial>
+                <pose> 0 0 0 0 0 0</pose>
+                <inertia>
+                    <ixx>50.4166666667</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>7.70833333333</iyy>
+                    <iyz>0</iyz>
+                    <izz>48.0416666667</izz>
+                </inertia>
+                <mass>50.0</mass>
+            </inertial>
+        </link>
+    </model>
+</sdf>

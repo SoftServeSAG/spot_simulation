@@ -1,0 +1,38 @@
+<?xml version='1.0'?>
+<sdf version='1.5'>
+    <model name="407_fridge">
+        <pose>0 0 0 0 0 0</pose>
+        <static>false</static>
+        <link name='model_body'>
+            <visual name="visual">
+                <geometry>
+                    <mesh>
+                        <uri>model://rs_gazebo/meshes/ss_hq4/407_fridge/407_fridge.dae</uri>
+                        <scale>1 1 1</scale>
+                    </mesh>
+                </geometry>
+            </visual>
+
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size> 0.9 0. 65 1. 48 </size>
+                    </box>
+                </geometry>
+            </collision>
+
+            <inertial>
+                <pose> 0 0 0 0 0 0</pose>
+                <inertia>
+                    <ixx>6.53225</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>7.501</iyy>
+                    <iyz>0</iyz>
+                    <izz>3.08125</izz>
+                </inertia>
+                <mass>30.0</mass>
+            </inertial>
+        </link>
+    </model>
+</sdf>

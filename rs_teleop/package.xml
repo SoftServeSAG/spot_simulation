@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package>
+  <name>rs_teleop</name>
+  <version>0.0.0</version>
+  <description>Keyboard teleop for Spot</description>
+
+  <maintainer email="tboro@softserveinc.com">Taras  Borovetsx</maintainer>
+
+  <license>BSD</license>
+
+  <author>Graylin Trevor Jay</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>rs_msgs</run_depend>
+  <run_depend>rospy</run_depend>
+</package>

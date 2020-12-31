@@ -1,0 +1,6 @@
+<launch>
+    <arg name="robot_name" default="spot1" />
+        <param name="spot_name" type="str" value="$(arg robot_name)" />
+        <rosparam file="$(find rs_control)/config/forward_kinematics.yaml" command="load"/>
+        <node name="talker_forward" pkg="rs_control" type="talker.py" output="screen" ns="/$(arg robot_name)"/>
+</launch>

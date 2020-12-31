@@ -38,6 +38,12 @@ srv/_*.py
 qtcreator-*
 *.user
 
+# Idea`s files
+*.idea/*
+
+.tmuxinator.yml
+.tmuxinator.yaml
+
 /planning/cfg
 /planning/docs
 /planning/src

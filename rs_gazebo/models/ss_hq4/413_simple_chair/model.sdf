@@ -1,0 +1,43 @@
+<?xml version='1.0'?>
+<sdf version='1.5'>
+    <model name="413_simple_chair">
+        <pose>0 0 0 0 0 0</pose>
+        <static>false</static>
+        <link name='model_body'>
+            <visual name="visual">
+                <geometry>
+                    <mesh>
+                        <uri>model://rs_gazebo/meshes/ss_hq4/413_simple_chair/413_simple_chair_visual.dae</uri>
+                        <scale>1 1 1</scale>
+                    </mesh>
+                </geometry>
+            </visual>
+
+            <collision name="collision">
+                <geometry>
+                    <!--TODO SUICIDE-->
+                    <mesh>
+                        <uri>model://rs_gazebo/meshes/ss_hq4/413_simple_chair/413_simple_chair_collision.stl</uri>
+                        <scale>1 1 1</scale>
+                    </mesh>
+                    <!--<box>-->
+                        <!--<size>1.69 0.04 0.97</size>-->
+                    <!--</box>-->
+                </geometry>
+            </collision>
+
+            <inertial>
+                <pose> 0 0 0 0 0 0</pose>
+                <inertia>
+                    <ixx>0.28</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.2555</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.0875</izz>
+                </inertia>
+                <mass>7.0</mass>
+            </inertial>
+        </link>
+    </model>
+</sdf>

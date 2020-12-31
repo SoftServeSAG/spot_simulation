@@ -1,0 +1,39 @@
+<?xml version='1.0'?>
+<sdf version='1.5'>
+    <model name="414_double_table">
+        <pose>0 0 0 0 0 0</pose>
+        <static>false</static>
+        <link name='model_body'>
+            <visual name="visual">
+                <geometry>
+                    <mesh>
+                        <uri>model://rs_gazebo/meshes/ss_hq4/414_double_table/414_double_table_visual.dae</uri>
+                        <scale>1 1 1</scale>
+                    </mesh>
+                </geometry>
+            </visual>
+
+            <collision name="collision">
+                <geometry>
+                    <mesh>
+                        <uri>model://rs_gazebo/meshes/ss_hq4/414_double_table/414_double_table_collision.stl</uri>
+                        <scale>1 1 1</scale>
+                    </mesh>
+                </geometry>
+            </collision>
+
+            <inertial>
+                <pose> 0 0 0 0 0 0</pose>
+                <inertia>
+                    <ixx>3.68333333333</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>12.0133333333</iyy>
+                    <iyz>0</iyz>
+                    <izz>13.8833333333</izz>
+                </inertia>
+                <mass>17.0</mass>
+            </inertial>
+        </link>
+    </model>
+</sdf>

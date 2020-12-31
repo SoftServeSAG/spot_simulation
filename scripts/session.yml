@@ -1,0 +1,25 @@
+name: spot
+root: ./
+
+startup_window: status
+windows:
+  - gazebo:
+      layout: even-vertical
+      panes:
+        - history -s 'roslaunch rs_gazebo HQ.launch world:="ss_hq4.world"'
+  - spot1:
+      layout: even-vertical
+      panes:
+        - history -s 'roslaunch rs_gazebo robot.launch robot_name:="spot1" init_pose:="-x -1.7 -y 8.6 -z 0.72 -R 0.0 -P 0.0 -Y 0.0"'
+  - inverse1:
+      layout: even-vertical
+      panes:
+        - history -s 'roslaunch rs_inverse inverse.launch robot_name:="spot1"'
+  - gui1:
+      layout: even-vertical
+      panes:
+        - history -s 'roslaunch rs_inverse gui_spot.launch robot_name:="spot1"'
+  - teleop1:
+      layout: even-vertical
+      panes:
+        - history -s 'roslaunch rs_teleop teleop_spot.launch robot_name:="spot1"'

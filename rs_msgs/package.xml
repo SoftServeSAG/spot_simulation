@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>rs_msgs</name>
+  <version>0.0.0</version>
+  <description>The rs_msgs package</description>
+
+  <maintainer email="tboro@softserveinc.com">Taras Borovets</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>message_generation</build_depend>
+
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>message_runtime</exec_depend>
+</package>

@@ -1,0 +1,68 @@
+ # Publish all joint states -----------------------------------
+  joint_states_controller:
+      type: joint_state_controller/JointStateController
+      publish_rate: 50
+
+
+  # Position Controllers ---------------------------------------
+  joint_front_left_hip_x_controller:
+      type:  effort_controllers/JointPositionController
+      joint: front_left_hip_x
+      pid:   {p: 280, d: 45, i: 0.001}
+      antiwindup: False
+  joint_front_left_hip_y_controller:
+      type:  effort_controllers/JointPositionController
+      joint: front_left_hip_y
+      pid:   {p: 280, d: 45, i: 0.001}  
+      antiwindup: False       
+  joint_front_left_knee_controller:
+      type:  effort_controllers/JointPositionController
+      joint: front_left_knee
+      pid:   {p: 280, d: 45, i: 0.001} 
+      antiwindup: False
+  joint_front_right_hip_x_controller:
+      type:  effort_controllers/JointPositionController
+      joint: front_right_hip_x
+      pid:   {p: 280, d: 45, i: 0.001} 
+      antiwindup: False
+  joint_front_right_hip_y_controller:
+      type:  effort_controllers/JointPositionController
+      joint: front_right_hip_y
+      pid:   {p: 280, d: 45, i: 0.001}
+      antiwindup: False
+  joint_front_right_knee_controller:
+      type:  effort_controllers/JointPositionController
+      joint: front_right_knee
+      pid:   {p: 280, d: 45, i: 0.001}
+      antiwindup: False
+  joint_rear_left_hip_x_controller:
+      type:  effort_controllers/JointPositionController
+      joint: rear_left_hip_x
+      pid:   {p: 280, d: 45, i: 0.001}
+      antiwindup: False
+  joint_rear_left_hip_y_controller:
+      type:  effort_controllers/JointPositionController
+      joint: rear_left_hip_y
+      pid:   {p: 280, d: 45, i: 0.001}
+      antiwindup: False
+  joint_rear_left_knee_controller:
+      type:  effort_controllers/JointPositionController
+      joint: rear_left_knee
+      pid:   {p: 280, d: 45, i: 0.001}
+      antiwindup: False
+  joint_rear_right_hip_x_controller:
+      type:  effort_controllers/JointPositionController
+      joint: rear_right_hip_x
+      pid:   {p: 280, d: 45, i: 0.001}
+      antiwindup: False
+  joint_rear_right_hip_y_controller:
+      type:  effort_controllers/JointPositionController
+      joint: rear_right_hip_y
+      pid:   {p: 280, d: 45, i: 0.001}
+      antiwindup: False
+  joint_rear_right_knee_controller:
+      type:  effort_controllers/JointPositionController
+      joint: rear_right_knee
+      pid:   {p: 280, d: 45, i: 0.001}
+      antiwindup: False
+
