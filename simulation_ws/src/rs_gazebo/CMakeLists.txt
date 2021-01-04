@@ -6,3 +6,5 @@ find_package(catkin REQUIRED)
 catkin_package(
   CATKIN_DEPENDS gazebo_ros gazebo_ros_control rs_description
 )
+
+install(DIRECTORY launch meshes models worlds DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
