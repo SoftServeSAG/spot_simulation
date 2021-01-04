@@ -18,7 +18,7 @@ windows:
   - gui1:
       layout: even-vertical
       panes:
-        - history -s 'roslaunch rs_inverse gui_spot.launch robot_name:="spot1"'
+        - history -s 'roslaunch rs_inverse gui_inverse.launch robot_name:="spot1"'
   - teleop1:
       layout: even-vertical
       panes:

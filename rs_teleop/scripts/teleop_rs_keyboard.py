@@ -37,8 +37,8 @@ CTRL-C to quit
 
 moveBindings = {
     'i': (1, 0, 0, 0),
-    'j': (1, 0, 0, 1),
-    'l': (1, 0, 0, -1),
+    'j': (0.5, 0, 0, 1),
+    'l': (0.5, 0, 0, -1),
     ',': (-1, 0, 0, 0),
 }
 
@@ -95,7 +95,7 @@ class PublishThread(threading.Thread):
         self.SwingPeriod = 0.25
         self.YawControl = 0.0
         self.YawControlOn = 0.0
-        self.speed = 0.0
+        self.step = 0.0
         self.turn = 0.0
 
         self.condition = threading.Condition()
@@ -110,15 +110,14 @@ class PublishThread(threading.Thread):
 
         self.start()
 
-    def update(self, x, y, z, roll, pitch, yaw, StepLength, LateralFraction, YawRate, StepVelocity, ClearanceHeight,
-               PenetrationDepth, SwingPeriod, YawControl, YawControlOn, speed, turn):
+    def update(self, x, y, z, roll, pitch, yaw, StepLength, YawRate, step, turn):
         self.x = x
         self.y = y
         self.z = z
         self.roll = roll
         self.pitch = pitch
         self.yaw = yaw
-        self.StepLength = StepLength * speed
+        self.StepLength = StepLength * step
         self.LateralFraction = self.LateralFraction
         self.YawRate = YawRate * turn
         self.StepVelocity = self.StepVelocity
@@ -168,7 +167,7 @@ class PublishThread(threading.Thread):
 
     def stop(self):
         self.done = True
-        self.update(0, 0, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+        self.update(0, 0, 0.1, 0, 0, 0, 0, 0, 0, 0)
         self.publish_gait_msg()
         self.join()
 
@@ -184,8 +183,8 @@ def getKey(key_timeout):
     return key
 
 
-def vels(speed, turn):
-    return "currently:\tspeed %s\tturn %s " % (speed, turn)
+def vels(step, turn):
+    return "currently:\tstep %s\tturn %s " % (step, turn)
 
 
 def status_def(status):
@@ -199,8 +198,8 @@ if __name__ == "__main__":
 
     rospy.init_node('teleop_twist_keyboard')
 
-    speed = rospy.get_param("~speed", 0.11)
-    turn = rospy.get_param("~turn", 0.5)
+    step = rospy.get_param("~step", 0.11)
+    turn = rospy.get_param("~turn", 3.5)
     repeat = rospy.get_param("~repeat_rate", 0.0)
     key_timeout = rospy.get_param("~key_timeout", 0.0)
     if key_timeout == 0.0:
@@ -227,20 +226,19 @@ if __name__ == "__main__":
 
     try:
         pub_thread.wait_for_subscribers()
-        pub_thread.update(x, y, z, roll, pitch, yaw, StepLength, LateralFraction, YawRate, StepVelocity,
-                          ClearanceHeight, PenetrationDepth, SwingPeriod, YawControl, YawControlOn, speed, turn)
+        pub_thread.update(x, y, z, roll, pitch, yaw, StepLength, YawRate, step, turn)
 
         print(msg)
-        print(vels(speed, turn))
+        print(vels(step, turn))
         while (1):
             key = getKey(key_timeout)
             if key in moveBindings.keys():
                 StepLength = moveBindings[key][0]
                 YawRate = moveBindings[key][3]
             elif key in speedBindings.keys():
-                speed = speed * speedBindings[key][0]
+                step = step * speedBindings[key][0]
                 turn = turn * speedBindings[key][1]
-                print(vels(speed, turn))
+                print(vels(step, turn))
                 status = status_def(status)
             elif key in rollBindings.keys():
                 roll = roll + rollBindings[key]
@@ -263,14 +261,8 @@ if __name__ == "__main__":
             else:
                 # Skip updating cmd_vel if key timeout and robot already
                 # stopped.
-                # if key == '' and StepLength == 0 and YawRate == 0:
-                #     continue
-                x = 0.0
-                y = 0.0
-                z = 0.0
-                roll = 0.0
-                pitch = 0.0
-                yaw = 0.0
+                if key == '' and StepLength == 0 and YawRate == 0:
+                    continue
                 StepLength = 0.0
                 LateralFraction = 0.0
                 YawRate = 0.0
@@ -283,8 +275,7 @@ if __name__ == "__main__":
                 if (key == '\x03'):
                     StepLength = 0.0
                     break
-            pub_thread.update(x, y, z, roll, pitch, yaw, StepLength, LateralFraction, YawRate, StepVelocity,
-                              ClearanceHeight, PenetrationDepth, SwingPeriod, YawControl, YawControlOn, speed, turn)
+            pub_thread.update(x, y, z, roll, pitch, yaw, StepLength, YawRate, step, turn)
             pub_thread.publish_gait_msg()
 
 

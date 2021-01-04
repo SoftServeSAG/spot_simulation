@@ -28,7 +28,7 @@ Init workspace
 ```bash
 mkdir -p spot_ws/src
 cd spot_ws/src
-git clone https://github.com/SoftServeSAG/spot_simulation.git
+git clone -b spot_control https://github.com/SoftServeSAG/spot_simulation.git
 ```
 
 Build docker images
@@ -105,11 +105,11 @@ roslaunch rs_inverse inverse.launch robot_name:="<spot_name>"
 ```
 Launch GUI to send commands:
 ```bash
-roslaunch rs_inverse gui_spot.launch
+roslaunch rs_inverse gui_inverse.launch
 ```
 Run GUI for the robot with the user-defined name:
 ```bash
-roslaunch rs_inverse gui_spot.launch robot_name:="<spot_name>"
+roslaunch rs_inverse gui_inverse.launch robot_name:="<spot_name>"
 ```
 To teleoperate Spot run the following command:
 ```bash
