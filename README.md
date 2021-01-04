@@ -53,17 +53,20 @@ To setup AWS Robomaker environment perform the following steps.
 ```
 - Create a Development Environment according to [guideline](https://docs.aws.amazon.com/robomaker/latest/dg/gs-build.html)
 
-- In the terminal section of your development environment run:
+- In the terminal section of your Development Environment run:
 ```bash
 cd ~/environment
 git clone -b spot_robomaker https://github.com/SoftServeSAG/spot_simulation.git
 
 ```
-- In files run_simulation.sh specify the names of buckets, job role, robot application and simulation application.
+- Install colcon for building and bundling robot and simulation applications according to [guideline](https://docs.aws.amazon.com/robomaker/latest/dg/application-build-bundle.html) 
+- In files run_simulation.sh specify the names of Buckets, Job Role, Robot Application and Simulation Application.
 
 ## Run Simulation  
 To run the simulation run the following command in Cloud9 terminal:
 ```bash
+cd spot_simulation
+chmod +x run_simulation.sh
 ./run_simulation.sh
 ```
 
