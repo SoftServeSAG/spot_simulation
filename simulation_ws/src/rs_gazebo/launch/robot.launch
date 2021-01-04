@@ -7,7 +7,7 @@
         <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
               args="$(arg init_pose) -urdf -param /robot_description -model $(arg robot_name)"
               respawn="false" output="screen"/>
-        <include file="$(find rs_control)/launch/spot_controller.launch">
+        <include file="$(find rs_gazebo)/launch/spot_controller.launch">
             <arg name="spot_name" value="$(arg robot_name)"/>
         </include>
     </group>

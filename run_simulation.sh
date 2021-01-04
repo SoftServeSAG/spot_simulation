@@ -17,6 +17,7 @@ echo " RUNNING COLCON BUILD AND BUNDLE"
 echo " NOTE: This will take 10-20 minutes for the first build/bundle, 1-2 minutes for subsequent build/bundle operations. "
 echo "###############################################################################"
 
+echo "Build and bunddle the simulation application"
 cd $ROS_SIM_DIR
 rosws update
 rosdep update
@@ -24,6 +25,7 @@ rosdep install --from-paths src --ignore-src -r -y
 colcon build
 colcon bundle
 
+echo "Build and bunddle the robot application"
 cd $ROS_APP_DIR
 rosdep update
 rosdep install --from-paths src --ignore-src -r -y
@@ -51,4 +53,4 @@ echo " Create simulation job "
 echo "###############################################################################"
 
 
-aws robomaker create-simulation-job --max-job-duration-in-seconds $MAX_JOB_DURATION --iam-role $JOB_ROLE --output-location s3Bucket=$BUCKET_OUTPUT,s3Prefix=job --robot-applications application=$ROBOT_APPLICATION,launchConfig='{packageName=rs_inverse,launchFile=inverse.launch}' --simulation-applications application=$SIMULATION_APPLICATION,launchConfig='{packageName=rs_gazebo,launchFile=HQ.launch}'
+aws robomaker create-simulation-job --max-job-duration-in-seconds $MAX_JOB_DURATION --iam-role $JOB_ROLE --output-location s3Bucket=$BUCKET_OUTPUT,s3Prefix=job --robot-applications application=$ROBOT_APPLICATION,launchConfig='{packageName=rs_control,launchFile=inverse.launch}' --simulation-applications application=$SIMULATION_APPLICATION,launchConfig='{packageName=rs_gazebo,launchFile=HQ.launch}'
