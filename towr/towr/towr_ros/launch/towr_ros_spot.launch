@@ -30,27 +30,6 @@
   
   <!--  Launches the URDF visualizers  --> 
   <include file="$(find xpp_spot)/launch/spot.launch"></include>
-  
-  <!-- Load the URDF into the ROS Parameter Server -->
-  <param name="robot_description"
-    command="$(find xacro)/xacro --inorder '$(find spot_description)/urdf/spot.urdf.xacro'" />
-
-<!--  &lt;!&ndash; Load joint controller configurations from YAML file to parameter server &ndash;&gt;-->
-<!--  <rosparam file="$(find spot_config)/config/ros_control/ros_control.yaml" command="load" ns="/spot"/>-->
-
-<!--  &lt;!&ndash; load the controllers &ndash;&gt;-->
-<!--  <node name="controller_spawner"-->
-<!--  pkg="controller_manager"-->
-<!--  type="spawner"-->
-<!--  respawn="false"-->
-<!--  output="screen"-->
-<!--  ns="/spot"-->
-<!--  args="-->
-<!--            joint_states_controller-->
-<!--            joint_group_position_controller-->
-<!--            ">-->
-<!--  </node>-->
-
 
   <node name="joint_pose_translator"
     pkg="towr_ros"

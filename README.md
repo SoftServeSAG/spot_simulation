@@ -28,13 +28,13 @@ Init workspace
 ```bash
 mkdir -p spot_ws/src
 cd spot_ws/src
-git clone https://github.com/SoftServeSAG/spot_simulation.git
+git clone -b spot_towr https://github.com/SoftServeSAG/spot_simulation.git
 ```
 
 Build docker images
 
 ```bash
-cd spot_simulation/docker/ros_melodic
+cd spot_simulation/docker/ros_spot
 chmod a+x build.bash
 sudo ./build.bash 
 ```

@@ -1,0 +1,5 @@
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro $(find rs_description)/urdf/spot.urdf.xacro --inorder" />
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" output="screen"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+</launch>
