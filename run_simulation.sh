@@ -5,8 +5,8 @@ echo "##########################################################################
 BUCKET_SOURCE=borospotsource
 BUCKET_OUTPUT=borospotoutput
 JOB_ROLE=arn:aws:iam::448733523991:role/tborospotrole
-ROBOT_APPLICATION=arn:aws:robomaker:us-west-2:448733523991:robot-application/Spot1/1608564193018
-SIMULATION_APPLICATION=arn:aws:robomaker:us-west-2:448733523991:simulation-application/Spot1_sim/1608130519861
+NAME_ROBOT_APPLICATION=Spot1
+NAME_SIMULATION_APPLICATION=Spot1_sim
 MAX_JOB_DURATION=3600
 BASE_DIR=`pwd`
 ROS_SIM_DIR=$BASE_DIR/simulation_ws
@@ -37,20 +37,21 @@ echo "Copy the robot application source bundle to your Amazon S3 bucket"
 
 aws s3 cp $ROS_APP_DIR/bundle/output.tar s3://$BUCKET_SOURCE/spot1.tar
 
-aws robomaker create-robot-application --name Spot1 --sources s3Bucket=$BUCKET_SOURCE,s3Key=spot1.tar,architecture=X86_64 --robot-software-suite name=ROS,version=Melodic
+ROBOT_APPLICATION=$(aws robomaker create-robot-application --name $NAME_ROBOT_APPLICATION --sources s3Bucket=$BUCKET_SOURCE,s3Key=spot1.tar,architecture=X86_64 --robot-software-suite name=ROS,version=Melodic)
 
+ROBOT_ARN=$(aws robomaker list-robot-applications --filter name="name",values="$NAME_ROBOT_APPLICATION" --query "robotApplicationSummaries[0].arn")
 
 echo "Copy the simulation application source bundle to your Amazon S3 bucket"
 
 aws s3 cp $ROS_SIM_DIR/bundle/output.tar s3://$BUCKET_SOURCE/spot1_sim.tar
 
+SIMULATION_APPLICATION=$(aws robomaker create-simulation-application --name Spot1_sim --sources s3Bucket=$BUCKET_SOURCE,s3Key=spot1_sim.tar,architecture=X86_64 --robot-software-suite name=ROS,version=Melodic --simulation-software-suite name=Gazebo,version=9 --rendering-engine name=OGRE,version=1.x)
 
-aws robomaker create-simulation-application --name Spot1_sim --sources s3Bucket=$BUCKET_SOURCE,s3Key=spot1_sim.tar,architecture=X86_64 --robot-software-suite name=ROS,version=Melodic --simulation-software-suite name=Gazebo,version=9 --rendering-engine name=OGRE,version=1.x
-
+SIMULATION_ARN=$(aws robomaker list-simulation-applications --filter name="name",values="$NAME_SIMULATION_APPLICATION" --query "simulationApplicationSummaries[0].arn")
 
 echo "###############################################################################"
 echo " Create simulation job "
 echo "###############################################################################"
 
 
-aws robomaker create-simulation-job --max-job-duration-in-seconds $MAX_JOB_DURATION --iam-role $JOB_ROLE --output-location s3Bucket=$BUCKET_OUTPUT,s3Prefix=job --robot-applications application=$ROBOT_APPLICATION,launchConfig='{packageName=rs_control,launchFile=inverse.launch}' --simulation-applications application=$SIMULATION_APPLICATION,launchConfig='{packageName=rs_gazebo,launchFile=HQ.launch}'
+aws robomaker create-simulation-job --max-job-duration-in-seconds $MAX_JOB_DURATION --iam-role $JOB_ROLE --output-location s3Bucket=$BUCKET_OUTPUT,s3Prefix=job --robot-applications application=$ROBOT_ARN,launchConfig='{packageName=rs_control,launchFile=inverse.launch}' --simulation-applications application=$SIMULATION_ARN,launchConfig='{packageName=rs_gazebo,launchFile=HQ.launch}'
