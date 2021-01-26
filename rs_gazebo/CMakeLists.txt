@@ -12,3 +12,7 @@ install(FILES
   worlds/ss_hq4.world
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
   )
+  
+install(DIRECTORY launch meshes models worlds
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
