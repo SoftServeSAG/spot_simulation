@@ -91,7 +91,7 @@ class RsGui:
         self.entry_yawcontrolon.place(x=220, y=750)
 
         self.b1 = Button(win, text='Send', command=self.command_pub)
-        self.b1.place(x=100, y=800)
+        self.b1.place(x=100, y=700)
         self.pub = pub
 
     def command_pub(self):

@@ -111,9 +111,18 @@ Run GUI for the robot with the user-defined name:
 ```bash
 roslaunch rs_inverse gui_inverse.launch robot_name:="<spot_name>"
 ```
-To teleoperate Spot run the following command:
+If you want control Spot using Twist() abd Pose() messages, then run the quadruped controller:
 ```bash
-roslaunch rs_teleop teleop_spot.launch
+roslaunch rs_base quadruped_controller.launch 
+```
+You can specify the topics with velocity and pose commands, and the  topic in which gait command will be published:
+```bash
+roslaunch rs_base quadruped_controller.launch twist_topic_name:="" pose_topic_name:="" gait_topic_name:="<spot_name>/inverse_gait_input"
+```
+
+The robot can be controlled by a teleop for legged robots [teleop_legged_robots](https://github.com/SoftServeSAG/teleop_legged_robots). To teleoperate Spot run the following command:
+```bash
+roslaunch teleop_legged_robots teleop.launch 
 ```
 To teleoperate Spot with the user-defined name run the following command:
 ```bash

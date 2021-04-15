@@ -432,6 +432,7 @@ class BezierGait():
                            clearance_height=0.06,
                            penetration_depth=0.01,
                            contacts=[0, 0, 0, 0],
+                           Ts_const=False,
                            dt=None):
         """Calculates the step coordinates for each foot
 
@@ -443,37 +444,42 @@ class BezierGait():
            :param penetration_depth: foot penetration depth during stance phase
            :param contacts: array containing 1 for contact and 0 otherwise
            :param dt: the time step
+           :param Ts_const: set stance time to constant value
 
            :returns: Foot Coordinates relative to unmodified body
         """
         # First, get Tstance from desired speed and stride length
         # NOTE: L is HALF of stride length
-        if vel != 0.0:
-            Tstance = 2.0 * abs(L) / abs(vel)
+        if Ts_const:  # Speed depends only on step length
+            Tstance = self.Tswing
+            print("Test")
         else:
-            Tstance = 0.0
-            L = 0.0
-            self.TD = False
-            self.time = 0.0
-            self.time_since_last_TD = 0.0
+            if vel != 0.0:
+                Tstance = 2.0 * abs(L) / abs(vel)
+            else:
+                Tstance = 0.0
+                L = 0.0
+                self.TD = False
+                self.time = 0.0
+                self.time_since_last_TD = 0.0
+            # Catch infeasible timesteps
+            if Tstance < dt:
+                Tstance = 0.0
+                L = 0.0
+                self.TD = False
+                self.time = 0.0
+                self.time_since_last_TD = 0.0
+                YawRate = 0.0
+            # NOTE: MUCH MORE STABLE WITH THIS
+            elif Tstance > 1.3 * self.Tswing:
+                Tstance = 1.3 * self.Tswing
+
 
         # Then, get time since last Touchdown and increment time counter
         if dt is None:
             dt = self.dt
 
         YawRate *= dt
-
-        # Catch infeasible timesteps
-        if Tstance < dt:
-            Tstance = 0.0
-            L = 0.0
-            self.TD = False
-            self.time = 0.0
-            self.time_since_last_TD = 0.0
-            YawRate = 0.0
-        # NOTE: MUCH MORE STABLE WITH THIS
-        elif Tstance > 1.3 * self.Tswing:
-            Tstance = 1.3 * self.Tswing
 
         # Check contacts
         if contacts[0] == 1 and Tstance > dt:
@@ -494,7 +500,7 @@ class BezierGait():
             if key == "BR":
                 self.dSref[i] = 0.0
             _, p_bf = TransToRp(Tbf_in)
-            if Tstance > 0.0:
+            if (Tstance > 0.0 and not Ts_const) or (L != 0.0 and Ts_const):
                 step_coord = self.GetFootStep(L, LateralFraction, YawRate,
                                               clearance_height,
                                               penetration_depth, Tstance, p_bf,

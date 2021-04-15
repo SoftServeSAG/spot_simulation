@@ -47,6 +47,7 @@ class SpotControl:
         self.SwingPeriod = 0.00
         self.YawControl = 0.0
         self.YawControlOn = True
+        self.Ts_const = False
 
         # ------------------ Spot states ----------------
         self.x_inst = 0.
@@ -149,6 +150,7 @@ class SpotControl:
         self.SwingPeriod = data.SwingPeriod
         self.YawControl = data.YawControl
         self.YawControlOn = data.YawControlOn
+        self.Ts_const = data.Ts_const
 
     def callback_model(self, data):
         """ Read the data of Spot` positions an orientations"""
@@ -236,11 +238,13 @@ class SpotControl:
         contacts = [self.front_left_lower_leg_contact, self.front_right_lower_leg_contact,
                     self.rear_left_lower_leg_contact,
                     self.rear_right_lower_leg_contact]
+        # Set time stance equal to swing period
+        Ts_const = self.Ts_const
         # Get Desired Foot Poses
-        T_bf = self.bzg.GenerateTrajectory(self.StepLength, self.LateralFraction, YawRate_desired,
+        T_bf = self.bzg.GenerateTrajectory(self.StepLength, self.LateralFraction, self.YawRate,
                                            self.StepVelocity, self.T_bf0, self.T_bf,
                                            self.ClearanceHeight, self.PenetrationDepth,
-                                           contacts)
+                                           contacts, Ts_const)
         joint_angles = self.spot.IK(orn, pos, T_bf)
         self.talker(joint_angles)
 

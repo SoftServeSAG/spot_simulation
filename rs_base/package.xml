@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>rs_base</name>
+  <version>0.0.0</version>
+  <description>The package contains node with quadruped controller</description>
+
+  <maintainer email="tboro@softserveinc.com">Taras Borovets</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>teleop_legged_robots</depend>
+
+</package>

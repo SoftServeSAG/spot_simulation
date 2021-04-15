@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y \
     ros-melodic-joint-state-publisher-gui \
     ros-melodic-interactive-marker-twist-server \ 
     ros-melodic-robot-state-publisher \
+    ros-melodic-teleop-legged-robots \
     && rm -rf /var/lib/apt/lists/* 
 
 RUN mkdir /var/run/sshd

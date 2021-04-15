@@ -1,0 +1,18 @@
+<launch>
+    <!--  Topic with velocity command (Twist msg)  -->
+    <arg name="twist_topic_name" default="spot1/cmd_vel"/>
+    <!--  Topic with body position command (Twist msg)  -->
+    <arg name="pose_topic_name" default="spot1/body_pose"/>
+    <!--  Topic with gait command   -->
+    <arg name="gait_topic_name" default="spot1/inverse_gait_input"/>
+    <!-- Time during which no velocity command is received. To stop a robot movement   -->
+    <arg name="time_stop" default="1"/>
+
+    <!-- Load the controllers -->
+    <node name="quadruped_controller_node" pkg="rs_base" type="quadruped_controller_node.py" respawn="false" output="screen">
+        <param name="twist_topic_name" value="$(arg twist_topic_name)"/>
+        <param name="pose_topic_name" value="$(arg pose_topic_name)"/>
+        <param name="gait_topic_name" value="$(arg gait_topic_name)"/>
+        <param name="time_stop" value="$(arg time_stop)"/>
+    </node>
+</launch>
