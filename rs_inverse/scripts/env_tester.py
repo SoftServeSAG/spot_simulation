@@ -241,7 +241,7 @@ class SpotControl:
         # Set time stance equal to swing period
         Ts_const = self.Ts_const
         # Get Desired Foot Poses
-        T_bf = self.bzg.GenerateTrajectory(self.StepLength, self.LateralFraction, self.YawRate,
+        T_bf = self.bzg.GenerateTrajectory(self.StepLength, self.LateralFraction, YawRate_desired,
                                            self.StepVelocity, self.T_bf0, self.T_bf,
                                            self.ClearanceHeight, self.PenetrationDepth,
                                            contacts, Ts_const)

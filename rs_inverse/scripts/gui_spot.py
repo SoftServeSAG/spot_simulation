@@ -91,7 +91,7 @@ class RsGui:
         self.entry_yawcontrolon.place(x=220, y=750)
 
         self.b1 = Button(win, text='Send', command=self.command_pub)
-        self.b1.place(x=100, y=700)
+        self.b1.place(x=100, y=800)
         self.pub = pub
 
     def command_pub(self):
@@ -117,7 +117,7 @@ class RsGui:
 
 def main():
     spot_name = rospy.get_param('~/spot_name')
-    rospy.init_node(spot_name + '_inverse_gui', anonymous=True)
+    rospy.init_node(spot_name + '_inverse_gui')
     pub = rospy.Publisher('/' + spot_name + '/inverse_gait_input', GaitInput, queue_size=10)
 
     root = Tk()
