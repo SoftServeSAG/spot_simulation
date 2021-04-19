@@ -126,5 +126,5 @@ roslaunch teleop_legged_robots teleop.launch
 ```
 To teleoperate Spot with the user-defined name run the following command:
 ```bash
-roslaunch rs_teleop teleop_spot.launch robot_name:="<spot_name>"
+roslaunch teleop_legged_robots teleop.launch robot_name:="<spot_name>"
 ```
