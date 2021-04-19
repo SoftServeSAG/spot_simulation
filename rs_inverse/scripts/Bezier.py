@@ -452,7 +452,6 @@ class BezierGait():
         # NOTE: L is HALF of stride length
         if Ts_const:  # Speed depends only on step length
             Tstance = self.Tswing
-            print("Test")
         else:
             if vel != 0.0:
                 Tstance = 2.0 * abs(L) / abs(vel)
