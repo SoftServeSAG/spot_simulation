@@ -49,6 +49,8 @@ Inside docker container
 
 ```bash
 cd /root/ws
+apt-get update
+rosdep install --from-paths src --ignore-src -r -y
 rosdep check --from-paths . --ignore-src --rosdistro melodic
 catkin config --init --extend /opt/ros/melodic   
 catkin build

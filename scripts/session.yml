@@ -19,7 +19,11 @@ windows:
       layout: even-vertical
       panes:
         - history -s 'roslaunch rs_inverse gui_inverse.launch robot_name:="spot1"'
+  - quadruped_controller:
+      layout: even-vertical
+      panes:
+        - history -s 'roslaunch rs_base quadruped_controller.launch '
   - teleop1:
       layout: even-vertical
       panes:
-        - history -s 'roslaunch rs_teleop teleop_spot.launch robot_name:="spot1"'
+        - history -s 'roslaunch teleop_legged_robots teleop.launch robot_name:="spot1"'
