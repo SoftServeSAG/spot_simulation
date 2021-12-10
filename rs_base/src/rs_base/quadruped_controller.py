@@ -61,9 +61,9 @@ class QuadrupedController:
             self.send_command()
 
     def pose_callback(self, pose):
-        self.body_position_x = pose.position.x
+        self.body_position_x = -pose.position.x
         self.body_position_y = pose.position.y
-        self.body_position_z = pose.position.z
+        self.body_position_z = -pose.position.z
         self.body_roll, self.body_pitch, self.body_yaw = tf_conversions.transformations.euler_from_quaternion(
             [pose.orientation.x, pose.orientation.y, pose.orientation.z, pose.orientation.w])
 
