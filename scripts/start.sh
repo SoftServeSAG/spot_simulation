@@ -1,5 +1,13 @@
 #!/bin/bash
 
+IGNITION_ROOT=~/.ignition/fuel
+
+mkdir -p "$IGNITION_ROOT"
+
+if [ ! -f "$IGNITION_ROOT/config.yaml" ]; then
+    cp config.yaml "$IGNITION_ROOT/"
+fi
+
 if_is_link=`readlink $0`
 command_name=$0
 if [[ if_is_link ]]; then
