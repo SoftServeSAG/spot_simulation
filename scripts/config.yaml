@@ -1,0 +1,6 @@
+---
+# The list of servers.
+servers:
+  -
+    name: osrf
+    url: https://fuel.ignitionrobotics.org
